@@ -29,8 +29,10 @@ jobs:
         with:
           version: 11.19.0
 
+      # Exact version: this job holds VERCEL_TOKEN, so a new CLI release must not run here until we choose it.
+      # 59.26.0 is the version the last successful deploy used. Bump deliberately.
       - name: Install Vercel CLI
-        run: npm install -g vercel@59
+        run: npm install -g --ignore-scripts vercel@59.26.0
 
       - name: Pull Vercel project metadata
         run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
